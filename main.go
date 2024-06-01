@@ -1,21 +1,12 @@
 package main
 
 import (
-	"net/http"
-
-	"sports-backend/migrate"
-
-	"github.com/gin-gonic/gin"
+	"sports-backend/db"
+	"sports-backend/router"
 )
 
 func main() {
-	router := gin.Default()
+	db.Init()
 
-	router.GET("/", func(c *gin.Context) {
-		c.String(http.StatusOK, "Hello world")
-	})
-
-	migrate.Migrate()
-
-	router.Run(":8080")
+	router.Run()
 }
