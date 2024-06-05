@@ -1,7 +1,6 @@
 package router
 
 import (
-	"net/http"
 	"os"
 	"sports-backend/api"
 
@@ -31,9 +30,7 @@ func SetRouter() *gin.Engine {
 		c.Next()
 	})
 
-	router.GET("/", func(c *gin.Context) {
-		c.String(http.StatusOK, "Hello world")
-	})
+	router.POST("/", api.Home)
 	router.POST("/register", api.Register)
 	router.POST("/login", api.Login)
 
