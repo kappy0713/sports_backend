@@ -3,7 +3,7 @@ package router
 import (
 	"net/http"
 	"os"
-	"sports-backend/controller"
+	"sports-backend/api"
 
 	"github.com/gin-gonic/gin"
 )
@@ -34,8 +34,8 @@ func SetRouter() *gin.Engine {
 	router.GET("/", func(c *gin.Context) {
 		c.String(http.StatusOK, "Hello world")
 	})
-	router.POST("/register", controller.Register)
-	router.POST("/login", controller.Login)
+	router.POST("/register", api.Register)
+	router.POST("/login", api.Login)
 
 	return router
 }

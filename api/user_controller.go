@@ -1,4 +1,4 @@
-package controller
+package api
 
 import (
 	"net/http"
@@ -12,6 +12,7 @@ import (
 	"golang.org/x/crypto/bcrypt"
 )
 
+// ログイン処理, JWTtoken発行
 func Login(c *gin.Context) {
 	var user model.User
 	if err := c.BindJSON(&user); err != nil {
@@ -50,6 +51,7 @@ func Login(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"token": tokenString})
 }
 
+// 新規登録処理, 名前, メールアドレス, パスワードを入力
 func Register(c *gin.Context) {
 	var user model.User
 
