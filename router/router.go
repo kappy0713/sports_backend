@@ -3,6 +3,7 @@ package router
 import (
 	"os"
 	"sports-backend/api"
+	"sports-backend/middleware"
 
 	"github.com/gin-gonic/gin"
 )
@@ -30,9 +31,13 @@ func SetRouter() *gin.Engine {
 		c.Next()
 	})
 
-	router.POST("/", api.Home)
+	router.POST("/", middleware.Auth(), api.Home)
+	// ユーザー認証(新規登録・ログイン)
 	router.POST("/register", api.Register)
 	router.POST("/login", api.Login)
+
+	// 運動記録投稿
+	router.POST("/post", api.Post)
 
 	return router
 }
