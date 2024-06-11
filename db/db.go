@@ -21,7 +21,7 @@ func Init() {
 
 	DB = db
 
-	err = db.AutoMigrate(&model.User{}, &model.Post{}, &model.Relationships{})
+	err = db.AutoMigrate(&model.User{}, &model.Post{}, &model.SharePost{}, &model.Relationships{})
 	if err != nil {
 		log.Fatal("Failed to run migrations:", err)
 	}

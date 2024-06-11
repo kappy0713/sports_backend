@@ -39,5 +39,8 @@ func SetRouter() *gin.Engine {
 	// 運動記録投稿
 	router.POST("/post", middleware.Auth(), api.Post)
 
+	// 運動情報投稿
+	router.POST("/share_post", middleware.Auth(), api.SharePost)
+
 	return router
 }
