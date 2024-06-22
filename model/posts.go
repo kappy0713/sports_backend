@@ -15,7 +15,6 @@ type Post struct {
 	Body      string         `json:"body"`
 	Date      time.Time      `json:"date"`
 	Time      int            `json:"time"`
-	Good      int            `json:"good"`
 	Tags      pq.StringArray `json:"tags" gorm:"type:text[]"`
 	CreatedAt time.Time      `json:"created_at"`
 }
@@ -28,7 +27,6 @@ type PostResponse struct {
 	Body      string         `json:"body"`
 	Date      time.Time      `json:"date"`
 	Time      int            `json:"time"`
-	Good      int            `json:"good"`
 	Tags      pq.StringArray `json:"tags" gorm:"type:text[]"`
 	CreatedAt time.Time      `json:"created_at"`
 }
@@ -41,7 +39,6 @@ type SharePost struct {
 	Title     string         `json:"title"`
 	Body      string         `json:"body"`
 	URL       string         `json:"url"`
-	Good      int            `json:"good"`
 	Tags      pq.StringArray `json:"tags" gorm:"type:text[]"`
 	CreatedAt time.Time      `json:"created_at"`
 }
@@ -53,7 +50,6 @@ type SharePostResponse struct {
 	Title     string         `json:"title"`
 	Body      string         `json:"body"`
 	URL       string         `json:"url"`
-	Good      int            `json:"good"`
 	Tags      pq.StringArray `json:"tags" gorm:"type:text[]"`
 	CreatedAt time.Time      `json:"created_at"`
 }
