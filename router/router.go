@@ -48,5 +48,10 @@ func SetRouter() *gin.Engine {
 	// 共有情報一覧
 	router.GET("/share", api.GetSharePost)
 
+	// マイページ
+	router.GET("/mypage", api.GetMyPost)
+	router.GET("/time", api.GetTime)
+	router.GET("/month", api.GetMonthTime)
+
 	return router
 }
