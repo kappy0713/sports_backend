@@ -2,8 +2,8 @@ package main
 
 import (
 	"log"
-	"sports-backend/db"
-	"sports-backend/router"
+	"sports-backend/infrastructure/db"
+	"sports-backend/infrastructure/router"
 
 	"github.com/joho/godotenv"
 )

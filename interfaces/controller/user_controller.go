@@ -1,10 +1,10 @@
-package api
+package controller
 
 import (
 	"net/http"
 	"os"
-	"sports-backend/db"
-	"sports-backend/model"
+	"sports-backend/domain"
+	"sports-backend/infrastructure/db"
 	"time"
 
 	"github.com/dgrijalva/jwt-go"
@@ -14,13 +14,13 @@ import (
 
 // ログイン処理, JWTtoken発行
 func Login(c *gin.Context) {
-	var user model.User
+	var user domain.User
 	if err := c.BindJSON(&user); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
 
-	var foundUser model.User
+	var foundUser domain.User
 	if err := db.DB.Where("name = ?", user.Name).First(&foundUser).Error; err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Error while logging in"})
 		return
@@ -53,7 +53,7 @@ func Login(c *gin.Context) {
 
 // 新規登録処理, 名前, メールアドレス, パスワードを入力
 func Register(c *gin.Context) {
-	var user model.User
+	var user domain.User
 
 	if err := c.BindJSON(&user); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
