@@ -49,9 +49,9 @@ func SetRouter() *gin.Engine {
 	router.GET("/share", api.GetSharePost)
 
 	// マイページ
-	router.GET("/mypage", api.GetMyPost)
-	router.GET("/time", api.GetTime)
-	router.GET("/month", api.GetMonthTime)
+	router.POST("/mypage", middleware.Auth(), api.GetMyPost)
+	router.POST("/time", middleware.Auth(), api.GetTime)
+	router.POST("/month", middleware.Auth(), api.GetMonthTime)
 
 	return router
 }

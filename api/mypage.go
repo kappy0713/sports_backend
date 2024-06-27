@@ -1,6 +1,7 @@
 package api
 
 import (
+	"net/http"
 	"sports-backend/db"
 	"sports-backend/model"
 	"time"
@@ -15,19 +16,19 @@ type Time struct {
 
 // 直近7日間の運動時間を取得
 func GetTime(c *gin.Context) {
-	// user, exists := c.Get("user")
-	// if !exists {
-	// 	c.JSON(http.StatusUnauthorized, gin.H{"error": "unauthorized"})
-	// 	return
-	// }
+	user, exists := c.Get("user")
+	if !exists {
+		c.JSON(http.StatusUnauthorized, gin.H{"error": "unauthorized"})
+		return
+	}
 
-	// u := user.(*model.User)
+	u := user.(model.User)
 
 	location, _ := time.LoadLocation("Asia/Tokyo")
 	today := time.Now().In(location)
 	sevendays := today.AddDate(0, 0, -6)
 
-	id := 1
+	id := u.ID
 	var posts []model.Post
 
 	times := make([]Time, 7)
@@ -61,14 +62,14 @@ func GetTime(c *gin.Context) {
 
 // 今月の運動時間を取得
 func GetMonthTime(c *gin.Context) {
-	// user, exists := c.Get("user")
-	// if !exists {
-	// 	c.JSON(http.StatusUnauthorized, gin.H{"error": "unauthorized"})
-	// 	return
-	// }
+	user, exists := c.Get("user")
+	if !exists {
+		c.JSON(http.StatusUnauthorized, gin.H{"error": "unauthorized"})
+		return
+	}
 
-	// u := user.(*model.User)
-	id := 1
+	u := user.(model.User)
+	id := u.ID
 
 	location, _ := time.LoadLocation("Asia/Tokyo")
 	now := time.Now().In(location)
@@ -105,14 +106,14 @@ func GetMonthTime(c *gin.Context) {
 
 // 自分の投稿を取得
 func GetMyPost(c *gin.Context) {
-	// user, exists := c.Get("user")
-	// if !exists {
-	// 	c.JSON(http.StatusUnauthorized, gin.H{"error": "unauthorized"})
-	// 	return
-	// }
+	user, exists := c.Get("user")
+	if !exists {
+		c.JSON(http.StatusUnauthorized, gin.H{"error": "unauthorized"})
+		return
+	}
 
-	// u := user.(model.User)
-	id := 1
+	u := user.(model.User)
+	id := u.ID
 
 	var posts []model.Post
 	// DBから自分の投稿を取得
