@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"log"
 	"os"
-	"sports-backend/model"
+	"sports-backend/domain"
 
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
@@ -21,7 +21,7 @@ func Init() {
 
 	DB = db
 
-	err = db.AutoMigrate(&model.User{}, &model.Post{}, &model.SharePost{}, &model.Relationships{})
+	err = db.AutoMigrate(&domain.User{}, &domain.Post{}, &domain.SharePost{}, &domain.Relationships{})
 	if err != nil {
 		log.Fatal("Failed to run migrations:", err)
 	}

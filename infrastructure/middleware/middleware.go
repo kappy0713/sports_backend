@@ -4,8 +4,8 @@ import (
 	"log"
 	"net/http"
 	"os"
-	"sports-backend/db"
-	"sports-backend/model"
+	"sports-backend/domain"
+	"sports-backend/infrastructure/db"
 	"strings"
 
 	"github.com/dgrijalva/jwt-go"
@@ -38,7 +38,7 @@ func Auth() gin.HandlerFunc {
 		}
 
 		if claims, ok := token.Claims.(*Claims); ok && token.Valid {
-			var user model.User
+			var user domain.User
 			if err := db.DB.Where("name = ?", claims.Name).First(&user).Error; err != nil {
 				c.JSON(http.StatusNotFound, gin.H{"error": "User not found"})
 				c.Abort()

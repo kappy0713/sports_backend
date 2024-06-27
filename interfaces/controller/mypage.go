@@ -1,9 +1,9 @@
-package api
+package controller
 
 import (
 	"net/http"
-	"sports-backend/db"
-	"sports-backend/model"
+	"sports-backend/domain"
+	"sports-backend/infrastructure/db"
 	"time"
 
 	"github.com/gin-gonic/gin"
@@ -22,14 +22,14 @@ func GetTime(c *gin.Context) {
 		return
 	}
 
-	u := user.(model.User)
+	u := user.(domain.User)
 
 	location, _ := time.LoadLocation("Asia/Tokyo")
 	today := time.Now().In(location)
 	sevendays := today.AddDate(0, 0, -6)
 
 	id := u.ID
-	var posts []model.Post
+	var posts []domain.Post
 
 	times := make([]Time, 7)
 	for i := 0; i < 7; i++ {
@@ -68,7 +68,7 @@ func GetMonthTime(c *gin.Context) {
 		return
 	}
 
-	u := user.(model.User)
+	u := user.(domain.User)
 	id := u.ID
 
 	location, _ := time.LoadLocation("Asia/Tokyo")
@@ -83,7 +83,7 @@ func GetMonthTime(c *gin.Context) {
 		})
 	}
 
-	var posts []model.Post
+	var posts []domain.Post
 	// DBから今月の投稿を取得
 	if err := db.DB.Where("user_id = ? AND date BETWEEN ? AND ?", id, first, now).Order("date ASC").Find(&posts).Error; err != nil {
 		c.JSON(500, gin.H{"error": "server error"})
@@ -112,10 +112,10 @@ func GetMyPost(c *gin.Context) {
 		return
 	}
 
-	u := user.(model.User)
+	u := user.(domain.User)
 	id := u.ID
 
-	var posts []model.Post
+	var posts []domain.Post
 	// DBから自分の投稿を取得
 	if err := db.DB.Where("user_id = ?", id).Order("created_at desc").Limit(10).Find(&posts).Error; err != nil {
 		c.JSON(500, gin.H{"error": "server error"})

@@ -1,4 +1,4 @@
-package model
+package domain
 
 type Relationships struct {
 	ID         string `json:"id" gorm:"primaryKey"`

@@ -1,16 +1,16 @@
-package api
+package controller
 
 import (
 	"net/http"
-	"sports-backend/db"
-	"sports-backend/model"
+	"sports-backend/domain"
+	"sports-backend/infrastructure/db"
 
 	"github.com/gin-gonic/gin"
 )
 
 // 運動記録を投稿
 func Post(c *gin.Context) {
-	var post model.Post
+	var post domain.Post
 	if err := c.BindJSON(&post); err != nil {
 		c.JSON(400, gin.H{"error": err.Error()})
 		return
@@ -22,7 +22,7 @@ func Post(c *gin.Context) {
 		return
 	}
 
-	userInfo, ok := user.(model.User)
+	userInfo, ok := user.(domain.User)
 	if !ok {
 		c.JSON(400, gin.H{"error": "Invalid user data"})
 		return
@@ -40,7 +40,7 @@ func Post(c *gin.Context) {
 
 // 運動の情報を投稿
 func SharePost(c *gin.Context) {
-	var share_post model.SharePost
+	var share_post domain.SharePost
 	if err := c.BindJSON(&share_post); err != nil {
 		c.JSON(400, gin.H{"error": err.Error()})
 		return
@@ -52,7 +52,7 @@ func SharePost(c *gin.Context) {
 		return
 	}
 
-	userInfo, ok := user.(model.User)
+	userInfo, ok := user.(domain.User)
 	if !ok {
 		c.JSON(400, gin.H{"error": "Invalid user data"})
 		return

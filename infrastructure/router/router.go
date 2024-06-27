@@ -2,8 +2,8 @@ package router
 
 import (
 	"os"
-	"sports-backend/api"
-	"sports-backend/middleware"
+	"sports-backend/infrastructure/middleware"
+	"sports-backend/interfaces/controller"
 
 	"github.com/gin-gonic/gin"
 )
@@ -31,27 +31,27 @@ func SetRouter() *gin.Engine {
 		c.Next()
 	})
 
-	router.POST("/", middleware.Auth(), api.Home)
+	// router.POST("/", middleware.Auth(), controller.Home)
 	// ユーザー認証(新規登録・ログイン)
-	router.POST("/register", api.Register)
-	router.POST("/login", api.Login)
+	router.POST("/register", controller.Register)
+	router.POST("/login", controller.Login)
 
 	// 運動記録投稿
-	router.POST("/post", middleware.Auth(), api.Post)
+	router.POST("/post", middleware.Auth(), controller.Post)
 
 	// 運動情報投稿
-	router.POST("/share_post", middleware.Auth(), api.SharePost)
+	router.POST("/share_post", middleware.Auth(), controller.SharePost)
 
 	// 運動記録一覧
-	router.GET("/list", api.GetPost)
+	router.GET("/list", controller.GetPost)
 
 	// 共有情報一覧
-	router.GET("/share", api.GetSharePost)
+	router.GET("/share", controller.GetSharePost)
 
 	// マイページ
-	router.POST("/mypage", middleware.Auth(), api.GetMyPost)
-	router.POST("/time", middleware.Auth(), api.GetTime)
-	router.POST("/month", middleware.Auth(), api.GetMonthTime)
+	router.POST("/mypage", middleware.Auth(), controller.GetMyPost)
+	router.POST("/time", middleware.Auth(), controller.GetTime)
+	router.POST("/month", middleware.Auth(), controller.GetMonthTime)
 
 	return router
 }
