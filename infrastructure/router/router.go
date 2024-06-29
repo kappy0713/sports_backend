@@ -49,6 +49,7 @@ func SetRouter() *gin.Engine {
 	router.GET("/share", controller.GetSharePost)
 
 	// マイページ
+	router.POST("/name", middleware.Auth(), controller.UserName)
 	router.POST("/mypage", middleware.Auth(), controller.GetMyPost)
 	router.POST("/time", middleware.Auth(), controller.GetTime)
 	router.POST("/month", middleware.Auth(), controller.GetMonthTime)
