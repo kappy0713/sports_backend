@@ -41,12 +41,16 @@ func SetRouter() *gin.Engine {
 
 	// 運動情報投稿
 	router.POST("/share_post", middleware.Auth(), controller.SharePost)
+	router.POST("/post_bookmark", middleware.Auth(), controller.PostBookmark)
 
 	// 運動記録一覧
 	router.GET("/list", controller.GetPost)
 
 	// 共有情報一覧
 	router.GET("/share", controller.GetSharePost)
+
+	// ブックマーク一覧
+	router.POST("/bookmark", middleware.Auth(), controller.GetBookmark)
 
 	// マイページ
 	router.POST("/name", middleware.Auth(), controller.UserName)

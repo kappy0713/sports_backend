@@ -21,3 +21,7 @@ type UserResponse struct {
 	Name  string `json:"name"`
 	Email string `json:"email" gorm:"unique"`
 }
+
+type BookmarkRequest struct {
+	ID int `json:"id"`
+}
