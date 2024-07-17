@@ -8,21 +8,15 @@
 
 
 ### 使用技術
-#### フロントエンド
-* Language: **TypeScript**
+#### フロント
+[![My Skills](https://skillicons.dev/icons?i=ts,nextjs,react)](https://skillicons.dev)
 
-* Library: **React**
+#### バック
+[![My Skills](https://skillicons.dev/icons?i=go)](https://skillicons.dev)
 
-* FW: **Next.js**
+#### DB・インフラ
+[![My Skills](https://skillicons.dev/icons?i=postgres,docker)](https://skillicons.dev)
 
-#### バックエンド
-* Language: **Go**
-
-* FW: **Gin**
-
-* ORM: **GORM**
-
-* DB: **PostgreSQL**
 
 ### 環境構築手順
 #### 1. リポジトリをクローン
