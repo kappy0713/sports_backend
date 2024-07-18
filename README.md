@@ -4,7 +4,10 @@
 
 **概要**：日々の運動を記録することで運動習慣の定着をサポートするサービス<br/>　　　自分の記録を分かりやすく可視化
 
-資料はこちら(準備中)
+資料は[こちら](https://github.com/kappy0713/sports_backend/blob/main/exerciseplus.pdf)
+
+### デモ動画
+https://github.com/user-attachments/assets/ce4184d1-11ea-4785-8122-785d64d46109
 
 
 ### 使用技術
